@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WebAR</title>
-  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebAR Cube Display</title>
+
+    <!-- AR.jsのライブラリ -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+
+    <!-- three.js (AR.js内で利用) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
 </head>
 <body style="margin: 0; overflow: hidden;">
-  <a-scene embedded arjs>
-    <!-- 画像認識ターゲットの設定 -->
-    <a-marker preset="custom" type="pattern" url="pattern-sample-image.patt">
-      <!-- 3Dオブジェクト（ここでは立方体）をターゲットに表示 -->
-      <a-entity 
-      gltf-model="url(Cube.glb)"
-      scale="0.5 0.5 0.5"
-      position="0 0.5 0"
-      rotation="0 180 0">
-    </a-entity>
-    </a-marker>
-    <!-- カメラ設定 -->
-    <a-entity camera></a-entity>
-  </a-scene>  
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+        <!-- マーカーの設定 -->
+        <a-marker preset="hiro">
+            <!-- 3Dオブジェクトを表示する位置 -->
+            <a-entity id="cube" gltf-model="url(Cube.glb)" scale="0.5 0.5 0.5" position="0 0 0"></a-entity>
+        </a-marker>
+
+        <!-- カメラ設定 -->
+        <a-entity camera></a-entity>
+    </a-scene>
 </body>
 </html>
